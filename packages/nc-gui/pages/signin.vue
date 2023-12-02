@@ -136,7 +136,7 @@ function navigateForgotPassword() {
               />
             </a-form-item>
 
-            <div class="hidden md:block text-right">
+            <div v-if="!appInfo.ldapAuth" class="hidden md:block text-right">
               <nuxt-link class="prose-sm" @click="navigateForgotPassword">
                 {{ $t('msg.info.signUp.forgotPassword') }}
               </nuxt-link>
@@ -184,16 +184,18 @@ function navigateForgotPassword() {
               </a>
             </div>
 
-            <div v-if="!appInfo.inviteOnlySignup" class="text-end prose-sm">
-              {{ $t('msg.info.signUp.dontHaveAccount') }}
-              <nuxt-link @click="navigateSignUp">{{ $t('general.signUp') }}</nuxt-link>
-            </div>
-            <template v-if="!appInfo.disableEmailAuth">
-              <div class="md:hidden">
-                <nuxt-link class="prose-sm" @click="navigateForgotPassword">
-                  {{ $t('msg.info.signUp.forgotPassword') }}
-                </nuxt-link>
+            <template v-if="!appInfo.ldapAuth">
+              <div v-if="!appInfo.inviteOnlySignup" class="text-end prose-sm">
+                {{ $t('msg.info.signUp.dontHaveAccount') }}
+                <nuxt-link @click="navigateSignUp">{{ $t('general.signUp') }}</nuxt-link>
               </div>
+              <template v-if="!appInfo.disableEmailAuth">
+                <div class="md:hidden">
+                  <nuxt-link class="prose-sm" @click="navigateForgotPassword">
+                    {{ $t('msg.info.signUp.forgotPassword') }}
+                  </nuxt-link>
+                </div>
+              </template>
             </template>
           </div>
         </a-form>

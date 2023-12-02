@@ -29,6 +29,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       NcError.badRequest('Invalid credentials');
     }
 
+    if (process.env.NC_LDAP_DISABLE_LOCAL_FALLBACK !== null) {
+      NcError.internalServerError('Invalid LDAP credentials');
+    }
+
     user.roles = extractRolesObj(user.roles);
 
     return user;

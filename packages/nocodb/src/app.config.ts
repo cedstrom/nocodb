@@ -12,6 +12,7 @@ const config: AppConfig = {
     emailPattern:
       process.env.NC_EMAIL_PATTERN && new RegExp(process.env.NC_EMAIL_PATTERN),
     disableEmailAuth: !!process.env.NC_DISABLE_EMAIL_AUTH,
+    ldapAuth: !!process.env.NC_LDAP_URL,
   },
   mainSubDomain: process.env.NC_MAIN_SUBDOMAIN ?? 'app',
   dashboardPath: process.env.NC_DASHBOARD_URL ?? '/dashboard',

@@ -13,6 +13,7 @@ import { EventEmitterModule } from '~/modules/event-emitter/event-emitter.module
 import { AuthService } from '~/services/auth.service';
 import { GlobalModule } from '~/modules/global/global.module';
 import { LocalStrategy } from '~/strategies/local.strategy';
+import { LdapStrategy } from '~/strategies/ldap.strategy';
 import { AuthTokenStrategy } from '~/strategies/authtoken.strategy/authtoken.strategy';
 import { BaseViewStrategy } from '~/strategies/base-view.strategy/base-view.strategy';
 import { MetasModule } from '~/modules/metas/metas.module';
@@ -64,6 +65,7 @@ export const ceModuleConfig = {
       useClass: ExtractIdsMiddleware,
     },
     LocalStrategy,
+    LdapStrategy,
     AuthTokenStrategy,
     BaseViewStrategy,
     HookHandlerService,

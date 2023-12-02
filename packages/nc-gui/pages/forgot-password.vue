@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { RuleObject } from 'ant-design-vue/es/form'
-import { definePageMeta, iconMap, reactive, ref, useApi, useI18n, validateEmail } from '#imports'
+import { definePageMeta, iconMap, reactive, ref, useApi, useGlobal, useI18n, validateEmail } from '#imports'
 
 definePageMeta({
   requiresAuth: false,
 })
+
+const { appInfo } = useGlobal()
 
 const route = useRoute()
 
@@ -57,6 +59,12 @@ function navigateSignIn() {
     query: route.query,
   })
 }
+
+onMounted(() => {
+  if (appInfo.value.ldapAuth) {
+    navigateSignIn()
+  }
+})
 </script>
 
 <template>

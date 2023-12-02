@@ -122,6 +122,9 @@ function navigateSignIn() {
 
 onMounted(async () => {
   await clearWorkspaces()
+  if (appInfo.value.ldapAuth) {
+    navigateSignIn()
+  }
 })
 </script>
 

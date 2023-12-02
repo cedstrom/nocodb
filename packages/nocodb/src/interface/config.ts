@@ -318,6 +318,7 @@ export interface AppConfig {
   auth: {
     emailPattern?: RegExp | null;
     disableEmailAuth: boolean;
+    ldapAuth: boolean;
   };
   mainSubDomain: string;
   dashboardPath: string;

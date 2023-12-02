@@ -419,6 +419,9 @@ export class UtilsService {
       disableEmailAuth: this.configService.get('auth.disableEmailAuth', {
         infer: true,
       }),
+      ldapAuth: this.configService.get('auth.ldapAuth', {
+        infer: true,
+      }),
       mainSubDomain: this.configService.get('mainSubDomain', { infer: true }),
       dashboardPath: this.configService.get('dashboardPath', { infer: true }),
       inviteOnlySignup: settings.invite_only_signup,

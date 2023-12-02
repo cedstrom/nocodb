@@ -46,6 +46,9 @@ export class AuthController {
     if (this.config.get('auth', { infer: true }).disableEmailAuth) {
       NcError.forbidden('Email authentication is disabled');
     }
+    if (this.config.get('auth', { infer: true }).ldapAuth) {
+      NcError.forbidden('LDAP authentication is enabled; signup disabled.');
+    }
     res.json(
       await this.usersService.signup({
         body: req.body,
@@ -77,7 +80,7 @@ export class AuthController {
     '/api/v1/db/auth/user/signin',
     '/api/v1/auth/user/signin',
   ])
-  @UseGuards(PublicApiLimiterGuard, AuthGuard('local'))
+  @UseGuards(PublicApiLimiterGuard, AuthGuard(['ldap', 'local']))
   @HttpCode(200)
   async signin(@Req() req: Request, @Res() res: Response) {
     if (this.config.get('auth', { infer: true }).disableEmailAuth) {
